@@ -8,6 +8,7 @@ TagManager:
   - Tile
   - Enemy
   - Max
+  - Jump
   layers:
   - Default
   - TransparentFX

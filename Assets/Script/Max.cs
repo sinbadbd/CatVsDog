@@ -14,6 +14,7 @@ public class Max : MonoBehaviour
     public LayerMask whatIsGround;
     public Transform groupPosition;
     public bool Gronded = true;
+    private bool allowJump = false;
 
     private Kitty kitty;
     private Rigidbody2D rb;
@@ -41,15 +42,10 @@ public class Max : MonoBehaviour
     {
 
         TurnPlayer();
-       //transalation = Input.GetAxis("Horizontal");
+        //transalation = Input.GetAxis("Horizontal");
 
-        if (kitty.getXPos > transform.position.x)
-        {
-            transalation = 1f;
-        }else
-        {
-            transalation = -1f;
-        }
+        AI();
+
 
         rb.velocity = new Vector2(transalation * Time.deltaTime * speed, rb.velocity.y);
         if (transalation > 0 || transalation < 0)
@@ -98,5 +94,43 @@ public class Max : MonoBehaviour
         {
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
+    }
+
+      void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.tag == "Jump")
+        {
+            allowJump = true;
+        }
+    }
+      void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "Jump")
+        {
+            allowJump = false;
+        }
+    }
+
+
+    void AI()
+    {
+
+        if (kitty.getXPos - 0.5f > transform.position.x)
+        {
+            transalation = 1f;
+        }
+        else if (kitty.getXPos + 0.5f < transform.position.x)
+        {
+            transalation = -1f;
+        }
+
+
+        if(kitty.getYPos > transform.position.y && allowJump)
+        {
+            jump();
+        }
+
+
+
     }
 }
