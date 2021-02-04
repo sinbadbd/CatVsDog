@@ -6,6 +6,8 @@ TagManager:
   tags:
   - coin
   - Tile
+  - Enemy
+  - Max
   layers:
   - Default
   - TransparentFX
