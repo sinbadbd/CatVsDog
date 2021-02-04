@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Max_slide
+  m_Name: Max_Slide
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -29,15 +29,15 @@ AnimationClip:
       value: {fileID: 21300000, guid: 725cc10a8dd0aeb479e199add48b82a5, type: 3}
     - time: 0.2
       value: {fileID: 21300000, guid: 684f728a83f484d4da97b2aab5bbe3d0, type: 3}
-    - time: 0.23333333
+    - time: 0.25
       value: {fileID: 21300000, guid: 6570d7a4223f42a44ada190d6c639510, type: 3}
-    - time: 0.28333333
+    - time: 0.3
       value: {fileID: 21300000, guid: b11f4df5b092c67409852bb4b9efa920, type: 3}
-    - time: 0.33333334
+    - time: 0.35
       value: {fileID: 21300000, guid: 30509a66aed150944b62502d22a4db4c, type: 3}
-    - time: 0.38333333
+    - time: 0.4
       value: {fileID: 21300000, guid: 4f77f895faf1c6c45a0a365f9903f90a, type: 3}
-    - time: 0.43333334
+    - time: 0.45
       value: {fileID: 21300000, guid: fbd6a2bfb00a7e1409cdef01158daf72, type: 3}
     attribute: m_Sprite
     path: 
@@ -73,7 +73,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.45000002
+    m_StopTime: 0.46666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

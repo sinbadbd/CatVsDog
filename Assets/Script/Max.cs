@@ -15,29 +15,43 @@ public class Max : MonoBehaviour
     public Transform groupPosition;
     public bool Gronded = true;
 
-
+    private Kitty kitty;
     private Rigidbody2D rb;
     void Start()
     {
+        kitty = GameObject.FindGameObjectWithTag("Player").GetComponent<Kitty>();
+
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        print(kitty.getXPos);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jump();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    jump();
+        //}
     }
 
     void FixedUpdate()
     {
 
         TurnPlayer();
-       // transalation = Input.GetAxis("Horizontal");
-         rb.velocity = new Vector2(transalation * Time.deltaTime * speed, rb.velocity.y);
+       //transalation = Input.GetAxis("Horizontal");
+
+        if (kitty.getXPos > transform.position.x)
+        {
+            transalation = 1f;
+        }else
+        {
+            transalation = -1f;
+        }
+
+        rb.velocity = new Vector2(transalation * Time.deltaTime * speed, rb.velocity.y);
         if (transalation > 0 || transalation < 0)
         {
             anim.SetFloat("speed", 1);

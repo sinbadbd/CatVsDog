@@ -18,6 +18,26 @@ public class Kitty : MonoBehaviour
 
 
     private Rigidbody2D rb;
+
+
+    public float getXPos
+    {
+        get
+        {
+            return transform.position.x;
+        }
+    }
+
+    public float getYPos
+    {
+        get
+        {
+            return transform.position.y;
+        }
+
+    }
+
+
     void Start()
     {
         anim = GetComponent<Animator>();
