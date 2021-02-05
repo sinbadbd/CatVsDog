@@ -11,11 +11,11 @@ public class Kitty : MonoBehaviour
 
     private float transalation;
 
-
+    public GameObject particle;
     public LayerMask whatIsGround;
     public Transform groupPosition;
     public bool Gronded = true;
-
+    private bool isDead = false;
 
     private Rigidbody2D rb;
 
@@ -55,7 +55,10 @@ public class Kitty : MonoBehaviour
 
     void FixedUpdate()
     {
-        
+
+        //if (isDead)
+        //    return;
+
         TurnPlayer();
         transalation = Input.GetAxis("Horizontal");
         // transform.Translate(new Vector3(transalation, 0f, 0f) * Time.deltaTime * speed);
@@ -104,4 +107,28 @@ public class Kitty : MonoBehaviour
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
     }
+
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.tag == "coin")
+        {
+            GameObject p = Instantiate(particle, col.transform.position, particle.transform.rotation);
+            Destroy(p, 0.5f);
+            Destroy(col.gameObject);
+        }
+    }
+
+
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if(collision.gameObject.tag == "Max"){
+    //        if (isDead)
+    //            return;
+
+    //        anim.SetTrigger("death");
+    //        isDead = true;
+    //    }
+    //}
 }
