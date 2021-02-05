@@ -133,4 +133,8 @@ public class Max : MonoBehaviour
 
 
     }
+    void switchDirection()
+    {
+
+    }
 }
