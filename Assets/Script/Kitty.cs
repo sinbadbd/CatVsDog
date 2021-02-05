@@ -38,6 +38,19 @@ public class Kitty : MonoBehaviour
     }
 
 
+    public bool movieRight {
+
+        get
+        {
+            if (transalation == 1)
+                return true;
+            return false;
+        }
+    }
+
+
+
+
     void Start()
     {
         anim = GetComponent<Animator>();
