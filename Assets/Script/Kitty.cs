@@ -122,15 +122,27 @@ public class Kitty : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "coin")
+        if (col.tag == "coin")
         {
             GameObject p = Instantiate(particle, col.transform.position, particle.transform.rotation);
             Destroy(p, 0.5f);
             Destroy(col.gameObject);
         }
-    }
 
+        if (col.tag == "home")
+        {
+            if(transform.childCount > 1)
+            {
+                GameObject chicken = transform.GetChild(1).gameObject;
+                print(chicken);
+                chicken.GetComponent<Chiken>().follow = false;
+                chicken.transform.parent = null;
+                chicken.GetComponent<Collider2D>().enabled = false;
+                chicken.GetComponent<ChikenRunner>().enabled = true;
+            }
+        }
+    }
 
 }
