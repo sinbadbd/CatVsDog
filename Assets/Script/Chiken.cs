@@ -9,7 +9,7 @@ public class Chiken : MonoBehaviour
 
    // private Kitty _kitty;
 
-    private bool follow = false;
+    public bool follow = false;
     void Start()
     {
       //  _kitty = player.GetComponent<Kitty>();
