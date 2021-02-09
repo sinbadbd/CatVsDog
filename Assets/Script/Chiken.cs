@@ -9,7 +9,7 @@ public class Chiken : MonoBehaviour
 
    // private Kitty _kitty;
 
-
+    private bool follow = false;
     void Start()
     {
       //  _kitty = player.GetComponent<Kitty>();
@@ -19,8 +19,11 @@ public class Chiken : MonoBehaviour
     void Update()
     {
 
+        if (!follow)
+            return;
        if (!player.GetComponent<SpriteRenderer>().flipX)
         {
+            // left move
             this.gameObject.transform.position = Vector2.MoveTowards(
                 new Vector3(transform.position.x, transform.position.y, transform.position.z),
                 new Vector3(player.transform.position.x - 1, player.transform.position.y, transform.position.z), 6f * Time.deltaTime
@@ -28,6 +31,7 @@ public class Chiken : MonoBehaviour
         }
         else
         {
+            // right move
             this.gameObject.transform.position = Vector2.MoveTowards(
                 new Vector3(transform.position.x, transform.position.y, transform.position.z),
                 new Vector3(player.transform.position.x + 1, player.transform.position.y, transform.position.z), 10f * Time.deltaTime
@@ -35,5 +39,24 @@ public class Chiken : MonoBehaviour
         }
 
         
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+
+            int children = player.transform.childCount;
+            if(children == 2)
+                return;
+           
+
+            follow = true;
+            transform.SetParent(player.transform);
+        }
+        if (collision.tag == "Max")
+        {
+            follow = false;
+            transform.parent = null;
+        }
     }
 }
