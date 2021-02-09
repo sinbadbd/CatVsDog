@@ -136,13 +136,30 @@ public class Kitty : MonoBehaviour
             if(transform.childCount > 1)
             {
                 GameObject chicken = transform.GetChild(1).gameObject;
-                print(chicken);
+                //print(chicken);
                 chicken.GetComponent<Chiken>().follow = false;
                 chicken.transform.parent = null;
                 chicken.GetComponent<Collider2D>().enabled = false;
                 chicken.GetComponent<ChikenRunner>().enabled = true;
+
+                StartCoroutine(ChickenDestroy(chicken));
             }
         }
+    }
+
+    IEnumerator ChickenDestroy(GameObject chicken)
+    {
+        yield return new WaitForSeconds(1);
+        chicken.SetActive(false);
+        Destroy(chicken);
+
+        int ChickenCount = GameObject.FindGameObjectsWithTag("Chicken").Length;
+        print(ChickenCount);
+        if(ChickenCount == 0)
+        {
+            print("Level Cleared");
+        }
+
     }
 
 }

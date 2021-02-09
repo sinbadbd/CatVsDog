@@ -10,6 +10,7 @@ TagManager:
   - Max
   - Jump
   - home
+  - Chicken
   layers:
   - Default
   - TransparentFX
