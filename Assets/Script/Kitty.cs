@@ -21,6 +21,8 @@ public class Kitty : MonoBehaviour
 
     public Text ScoreText;
 
+    public Max max;
+
     public float getXPos
     {
         get
@@ -56,6 +58,8 @@ public class Kitty : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        max = GameObject.FindGameObjectWithTag("Max").GetComponent<Max>();
+
     }
 
     // Update is called once per frame
@@ -149,6 +153,7 @@ public class Kitty : MonoBehaviour
                 chicken.GetComponent<ChikenRunner>().enabled = true;
 
                 StartCoroutine(ChickenDestroy(chicken));
+                max.speed = 0.0f;
             }
         }
     }
@@ -165,6 +170,7 @@ public class Kitty : MonoBehaviour
         {
             //print("Level Cleared");
             UIHandler.instance.ShowLevelDialog("Level Cleard", ScoreText.text);
+
         }
 
     }
