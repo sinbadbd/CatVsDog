@@ -78,9 +78,10 @@ public class Kitty : MonoBehaviour
             return;
 
         TurnPlayer();
-        transalation = Input.GetAxis("Horizontal");
+       // transalation = Input.GetAxis("Horizontal");
         // transform.Translate(new Vector3(transalation, 0f, 0f) * Time.deltaTime * speed);
         rb.velocity = new Vector2(transalation * Time.deltaTime * speed, rb.velocity.y);
+
         if (transalation > 0 || transalation < 0)
         {
             anim.SetFloat("speed", 1);
@@ -114,7 +115,7 @@ public class Kitty : MonoBehaviour
         }
     }
 
-    void jump()
+    public void jump()
     {
         if (!isGrounded())
         {
@@ -187,4 +188,28 @@ public class Kitty : MonoBehaviour
             UIHandler.instance.ShowLevelDialog("Lavel Failed", ScoreText.text);
         }
     }
+
+
+
+    // Touch Event
+
+    public void onPointerEnter_Right() {
+        transalation = 1;
+        print("right");
+    }
+
+  
+    public void onPointerEnter_Left()
+    {
+        transalation = -1;
+        print("left");
+    }
+
+    public void onPointerEnter_Exit()
+    {
+        transalation = 0;
+        print("0");
+    }
+
+
 }

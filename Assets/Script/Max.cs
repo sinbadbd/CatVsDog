@@ -25,7 +25,7 @@ public class Max : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
-        print(kitty.getXPos);
+        //print(kitty.getXPos);
 
     }
 
