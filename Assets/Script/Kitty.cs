@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Kitty : MonoBehaviour
 {
 
@@ -19,6 +19,7 @@ public class Kitty : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    public Text ScoreText;
 
     public float getXPos
     {
@@ -69,8 +70,8 @@ public class Kitty : MonoBehaviour
     void FixedUpdate()
     {
 
-        //if (isDead)
-        //    return;
+        if (isDead)
+            return;
 
         TurnPlayer();
         transalation = Input.GetAxis("Horizontal");
@@ -126,6 +127,11 @@ public class Kitty : MonoBehaviour
     {
         if (col.tag == "coin")
         {
+            //upate the coin score text
+
+            ScoreText.text = (int.Parse(ScoreText.text) + 5).ToString();
+
+
             GameObject p = Instantiate(particle, col.transform.position, particle.transform.rotation);
             Destroy(p, 0.5f);
             Destroy(col.gameObject);
@@ -157,9 +163,22 @@ public class Kitty : MonoBehaviour
         print(ChickenCount);
         if(ChickenCount == 0)
         {
-            print("Level Cleared");
+            //print("Level Cleared");
+            UIHandler.instance.ShowLevelDialog("Level Cleard", ScoreText.text);
         }
 
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Max")
+        {
+            if (isDead)
+                return;
+            anim.SetTrigger("death");
+            isDead = true;
+
+            UIHandler.instance.ShowLevelDialog("Lavel Failed", ScoreText.text);
+        }
+    }
 }
