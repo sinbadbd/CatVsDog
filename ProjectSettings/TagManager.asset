@@ -11,6 +11,7 @@ TagManager:
   - Jump
   - home
   - Chicken
+  - health
   layers:
   - Default
   - TransparentFX
