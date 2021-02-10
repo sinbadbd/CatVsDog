@@ -23,6 +23,12 @@ public class Kitty : MonoBehaviour
 
     public Max max;
 
+    public GameObject[] health;
+    private int healthCount;
+
+    public int countCollisions = 0;
+
+
     public float getXPos
     {
         get
@@ -60,6 +66,9 @@ public class Kitty : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         max = GameObject.FindGameObjectWithTag("Max").GetComponent<Max>();
 
+
+        healthCount = GameObject.FindGameObjectsWithTag("health").Length;
+
     }
 
     // Update is called once per frame
@@ -78,7 +87,11 @@ public class Kitty : MonoBehaviour
             return;
 
         TurnPlayer();
-       // transalation = Input.GetAxis("Horizontal");
+
+        if (Application.platform == RuntimePlatform.OSXEditor)
+        {
+            transalation = Input.GetAxis("Horizontal");
+        }
         // transform.Translate(new Vector3(transalation, 0f, 0f) * Time.deltaTime * speed);
         rb.velocity = new Vector2(transalation * Time.deltaTime * speed, rb.velocity.y);
 
@@ -180,12 +193,68 @@ public class Kitty : MonoBehaviour
     {
         if (collision.gameObject.tag == "Max")
         {
-            if (isDead)
-                return;
-            anim.SetTrigger("death");
-            isDead = true;
+            //if (isDead)
+            //    return;
+            //anim.SetTrigger("death");
+            //isDead = true;
 
-            UIHandler.instance.ShowLevelDialog("Lavel Failed", ScoreText.text);
+            //UIHandler.instance.ShowLevelDialog("Lavel Failed", ScoreText.text);
+
+            int count = collision.contactCount;
+
+            if(count == 0)
+            {
+                print(count);
+                health[0].SetActive(false);
+            }
+            else if(count == 1)
+            {
+                //print(count);
+                health[1].SetActive(false);
+            }
+            else
+            {
+                //print(count);
+                health[2].SetActive(false);
+            }
+
+            //print(count);
+
+
+            //health[0].SetActive(false);
+            //health[1].SetActive(false);
+            //health[2].SetActive(false);
+
+            //if (collision.contactCount == 1)
+            //{
+            //    health[0].SetActive(false);
+            //}
+
+            //if (collision.contactCount == 2)
+            //{
+            //    health[1].SetActive(false);
+            //}
+            //if (collision.contactCount == 3)
+            //{
+            //    health[3].SetActive(false);
+            //}
+
+            //stars[0].SetActive(true);
+
+            //countCollisions += 1 ;
+            //if (countCollisions >= 3)
+            //{
+
+            //    Debug.Log(countCollisions);
+            //}
+
+
+            //countCollisions++;
+
+            //float.Parse(healthCount.ToString());
+            //print(healthCount);
+            //healthCount--;
+
         }
     }
 

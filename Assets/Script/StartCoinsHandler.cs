@@ -28,22 +28,24 @@ public class StartCoinsHandler : MonoBehaviour
 
         print(percentage);
 
-        if(percentage >= 33f && percentage < 66)
+        if (percentage >= 33f && percentage < 66)
         {
             //gameObject[0].set
             stars[0].SetActive(true);
 
         }
-        else if(percentage >= 66 && percentage < 70) {
+        else if (percentage >= 66 && percentage < 70) {
 
             stars[0].SetActive(true);
             stars[1].SetActive(true);
-        } else 
+        } else if (percentage < 33) {
+
+        } else
         {
             stars[0].SetActive(true);
             stars[1].SetActive(true);
             stars[2].SetActive(true);
-         }
+        }
 
 
     }
