@@ -218,6 +218,10 @@ public class Kitty : MonoBehaviour
                 health[2].SetActive(false);
             }
 
+            if (health.Length > 3)
+            {
+                UIHandler.instance.ShowLevelDialog("Lavel Failed", ScoreText.text);
+            }
             //print(count);
 
 
